@@ -7,7 +7,7 @@
 --
 ar
 
-# stdev | ii_abual3bed discord: https://dscord.gg/7c2gZqD98A
+# stdev | ii_abual3bed discord: https://discord.gg/HCskVYZPtB
 # st-adminitems - QBCore
 
 واجهة NUI مكتاملة لاعطاء الايتمات .
