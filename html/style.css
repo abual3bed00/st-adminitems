@@ -1,0 +1,209 @@
+:root {
+  --bg: rgba(0,0,0,0.55);
+  --panel: #1f1f1f;
+  --panel-2: #252525;
+  --text: #ffffff;
+  --muted: rgba(255,255,255,0.7);
+  --brand-1: #bb5917;
+  --brand-2: #eb7d13;
+  --radius: 14px;
+}
+
+/* Fullscreen overlay to ensure UI never exceeds viewport */
+html, body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
+  color: var(--text);
+  background: transparent;
+}
+
+#overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--bg);
+  display: none; /* shown via JS on open */
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+/* Main panel constrained to viewport */
+#main-ui {
+  width: min(920px, 100%);
+  max-height: min(90vh, 920px);
+  background: var(--panel);
+  border-radius: var(--radius);
+  border: 1px dashed rgba(255,255,255,0.08);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  display: flex;
+  flex-direction: column;
+  padding: 18px;
+  gap: 14px;
+  overflow: hidden; /* inner sections scroll */
+  animation: fadeIn 0.25s ease;
+}
+
+/* Header */
+.header {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.header h2 {
+  margin: 0;
+  font-weight: 600;
+  letter-spacing: .3px;
+}
+.search-container {
+  width: 320px;
+  max-width: 100%;
+}
+#search {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  background: rgba(255,255,255,0.08);
+  color: var(--text);
+  outline: none;
+  transition: all .2s ease;
+  font-size: 14px;
+}
+#search:focus {
+  border-color: var(--brand-2);
+  background: rgba(255,255,255,0.12);
+  box-shadow: 0 0 0 2px rgba(235,125,19,.25);
+}
+
+/* Controls row */
+.top-controls {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 10px;
+}
+.control {
+  display: grid;
+  gap: 6px;
+}
+.control label {
+  font-size: 12px;
+  color: var(--muted);
+}
+.control input {
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  background: var(--panel-2);
+  color: var(--text);
+  outline: none;
+}
+.control input:focus {
+  border-color: var(--brand-2);
+}
+
+/* Items grid with internal scroll */
+#items-list.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: 12px;
+  padding: 6px;
+  overflow: auto;
+  /* take remaining space to enable internal scrolling */
+  flex: 1 1 auto;
+}
+
+/* Item cards */
+.item {
+  background: rgba(235,125,19,0.06);
+  border: 1px dashed rgba(255,255,255,0.15);
+  border-radius: 12px;
+  padding: 10px 8px;
+  text-align: center;
+  cursor: pointer;
+  display: grid;
+  gap: 6px;
+  align-content: center;
+  justify-items: center;
+  transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease, background .15s ease;
+}
+.item img {
+  width: 58px;
+  height: 58px;
+  object-fit: contain;
+}
+.item span {
+  font-size: 12px;
+  color: var(--text);
+}
+.item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(235,125,19,0.25);
+  background: rgba(235,125,19,0.14);
+  border-color: rgba(235,125,19,0.35);
+}
+.item.active {
+  border: 2px solid var(--brand-2);
+  background: rgba(235,125,19,0.20);
+}
+
+/* Buttons */
+button {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+}
+button.primary {
+  background: linear-gradient(135deg, var(--brand-1), var(--brand-2));
+  color: #fff;
+  transition: transform .15s ease, box-shadow .15s ease, opacity .15s;
+}
+button.primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(235,125,19,0.35);
+}
+button:disabled {
+  opacity: .5;
+  cursor: not-allowed;
+}
+
+/* Toasts */
+#toast-container {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  display: grid;
+  gap: 8px;
+  z-index: 99999;
+}
+.toast {
+  background: rgba(235,125,19,0.95);
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: 13px;
+  animation: toastIn .2s ease, toastOut .25s ease 1.8s forwards;
+}
+
+/* Animations */
+@keyframes fadeIn { from {opacity: 0; transform: scale(.98)} to {opacity:1; transform: scale(1)} }
+@keyframes toastIn { from {opacity:0; transform: translateY(8px)} to {opacity:1; transform: translateY(0)} }
+@keyframes toastOut { to {opacity:0; transform: translateY(8px)} }
+
+/* Scrollbar (WebKit) */
+#items-list::-webkit-scrollbar { width: 8px; height: 8px; }
+#items-list::-webkit-scrollbar-thumb { background: linear-gradient(var(--brand-2), var(--brand-1)); border-radius: 6px; }
+#items-list::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); }
+
+/* Responsive */
+@media (max-width: 640px) {
+  .top-controls {
+    grid-template-columns: 1fr;
+  }
+}
