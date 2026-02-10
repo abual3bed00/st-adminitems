@@ -7,7 +7,7 @@
 --
 ar
 
-# stdev | ii_abual3bed discord: https://discord.gg/HCskVYZPtB
+# sii_abual3bed | stdev discord: https://discord.gg/HCskVYZPtB
 # st-adminitems - QBCore
 
 واجهة NUI مكتاملة لاعطاء الايتمات .
@@ -19,7 +19,7 @@ ar
 
 - ✅ فتح الواجهة عن طريق امر مخصص و زر مخصص .
 - ✅ عرض كل الايتمات من الكور مع صورها .
-- ✅ صلاحيات محددة (admin / dev).
+- ✅ صلاحيات محددة (admin / god).
 - ✅ تحديث الكمية .
 - ✅ نظام بحث ديناميكي .
 - ✅ متوافق مع QBCore Framework.
@@ -43,7 +43,7 @@ ensure st-adminitems
 -----
 en
 
-# stdev | ii_abual3bed discord: https://dscord.gg/7c2gZqD98A
+# sii_abual3bed | stdev discord: https://discord.gg/HCskVYZPtB
 # st-adminitems - QBCore
 
 A complete NUI interface for providing items.
@@ -54,7 +54,7 @@ A complete NUI interface for providing items.
 
 - ✅ Open the interface via a custom command and button.
 - ✅ Display all items from the core with their images.
-- ✅ Specific permissions (admin/dev).
+- ✅ Specific permissions (admin/god).
 - ✅ Update the quantity.
 - ✅ Dynamic search system.
 - ✅ Compatible with the QBCore Framework.
